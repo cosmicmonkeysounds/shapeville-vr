@@ -4,14 +4,15 @@ using System.Collections.Generic;
 /// <summary>
 /// Static utility that converts a 2D boundary polygon into a Unity Mesh
 /// suitable for floor rendering and collision.
-/// Vertices are placed on the local XY plane (Z=0) to match MRUK anchor space,
-/// where the plane's normal is along the local Z axis.
+/// Vertices are placed on the XZ plane (Y=0) with normals facing up,
+/// matching Unity's floor convention.
 /// </summary>
 public static class FloorMeshGenerator
 {
     /// <summary>
-    /// Builds a mesh from a 2D boundary polygon (as returned by MRUKAnchor.PlaneBoundary2D).
-    /// Vertices are placed at (x, y, 0) in the anchor's local space.
+    /// Builds a floor mesh from a 2D boundary polygon.
+    /// Input X maps to world X, input Y maps to world Z.
+    /// Vertices are at (x, 0, z) with Vector3.up normals.
     /// </summary>
     public static Mesh GenerateFloorMesh(Vector2[] boundary)
     {
@@ -28,10 +29,8 @@ public static class FloorMeshGenerator
 
         for (int i = 0; i < vertCount; i++)
         {
-            // MRUK boundary is in local 2D; plane lies in XY, normal along +Z
-            vertices[i] = new Vector3(boundary[i].x, boundary[i].y, 0f);
-            normals[i] = Vector3.forward;
-            // UVs based on boundary position for consistent tiling
+            vertices[i] = new Vector3(boundary[i].x, 0f, boundary[i].y);
+            normals[i] = Vector3.up;
             uvs[i] = boundary[i];
         }
 
@@ -54,7 +53,7 @@ public static class FloorMeshGenerator
 
     /// <summary>
     /// Ear-clipping triangulation for simple (non-self-intersecting) polygons.
-    /// Handles both convex and concave room shapes.
+    /// Handles both convex and concave Guardian shapes.
     /// </summary>
     static int[] Triangulate(Vector2[] polygon)
     {

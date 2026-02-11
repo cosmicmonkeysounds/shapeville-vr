@@ -1,10 +1,12 @@
 {
   "dependencies": {
+    "com.meta.xr.mrutilitykit": "83.0.4",
     "com.meta.xr.sdk.interaction.ovr": "83.0.4",
-    "com.unity.feature.vr": "1.0.0",
     "com.unity.ide.vscode": "1.2.5",
     "com.unity.inputsystem": "1.14.0",
+    "com.unity.shadergraph": "14.0.12",
     "com.unity.textmeshpro": "3.0.7",
+    "com.unity.xr.hands": "1.7.3",
     "com.unity.xr.interaction.toolkit": "2.6.5",
     "com.unity.xr.management": "4.5.4",
     "com.unity.xr.oculus": "4.5.2",

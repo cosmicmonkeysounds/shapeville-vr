@@ -14,17 +14,10 @@ public class ShapeManager : MonoBehaviour
 
     private void OnSceneLoaded()
     {
-        var room = MRUK.Instance.GetCurrentRoom();
-        if (room == null)
-        {
-            Debug.LogError("[ShapeManager] No room found after scene loaded.");
-            return;
-        }
-
-        SpawnShapes(room);
+        SpawnShapes();
     }
 
-    private void SpawnShapes(MRUKRoom room)
+    private void SpawnShapes()
     {
         for (int i = 0; i < spawnCount; i++)
         {
@@ -35,7 +28,7 @@ public class ShapeManager : MonoBehaviour
             if (shape == null)
                 shape = go.AddComponent<Shape>();
 
-            if (!shape.FindSpawnPosition(room))
+            if (!shape.SpawnFloating())
             {
                 Destroy(go);
             }

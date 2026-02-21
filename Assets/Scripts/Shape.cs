@@ -24,6 +24,12 @@ public class Shape : GrabbableEvents
     /// </summary>
     public bool SpawnFloating()
     {
+        if (RoomSystem.Instance == null)
+        {
+            Debug.LogWarning($"[Shape] RoomSystem.Instance is null — cannot spawn {gameObject.name}");
+            return false;
+        }
+
         var pos = RoomSystem.Instance.GetRandomFloatingSpawn();
         if (!pos.HasValue)
         {

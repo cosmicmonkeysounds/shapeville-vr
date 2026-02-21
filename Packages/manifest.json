@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "com.meta.xr.mrutilitykit": "83.0.4",
+    "com.meta.xr.mrutilitykit": "85.0.0",
     "com.meta.xr.sdk.interaction.ovr": "83.0.4",
     "com.unity.ide.vscode": "1.2.5",
     "com.unity.inputsystem": "1.14.0",
